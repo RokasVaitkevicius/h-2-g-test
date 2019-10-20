@@ -2,6 +2,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './',
+    hot: true,
+  },
   entry: './src/index',
   output: {
     path: path.join(__dirname, '/dist'),
