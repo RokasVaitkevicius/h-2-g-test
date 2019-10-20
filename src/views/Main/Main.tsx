@@ -1,8 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { Typography } from '@material-ui/core';
 
 const Main: React.FC = () => {
-  return <h1>MAIN</h1>;
+  return <Typography variant="h1">MAIN</Typography>;
 };
 
 export default withRouter(Main);
