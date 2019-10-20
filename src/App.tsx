@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
+import { createBrowserHistory } from 'history';
 import './App.css';
+import { Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer from './redux/rootReducer';
+import Routes from './Routes';
 
-const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-};
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
+
+const browserHistory = createBrowserHistory();
+
+const App: React.FC = () => (
+  <Provider store={store}>
+    <Router history={browserHistory}>
+      <Routes />
+    </Router>
+  </Provider>
+);
 
 export default App;
