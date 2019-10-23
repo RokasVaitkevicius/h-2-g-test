@@ -1,11 +1,34 @@
-import postsApi from '../../api/posts';
-
+import { ActionTypes, Post } from '../../types';
 import { setPost } from './actions';
 
-const fetchAndSetPostThunk = () => async dispatch => {
-  const posts = await postsApi();
-  const randomPost = posts[Math.floor(Math.random() * posts.length)].body;
-  dispatch(setPost(randomPost));
+const fetchAndSetPost = () => {
+  return apiAction({
+    url: 'https://jsonplaceholder.typicode.com/posts',
+    onSuccess: (posts: Array<Post>) => {
+      const randomPost = posts[Math.floor(Math.random() * posts.length)].body;
+      return setPost(randomPost);
+    },
+    onFailure: () => console.log('Error occured loading posts'),
+  });
 };
 
-export { fetchAndSetPostThunk };
+function apiAction({
+  url = '',
+  method = 'GET',
+  data = null,
+  onSuccess = () => {},
+  onFailure = () => {},
+}) {
+  return {
+    type: ActionTypes.API,
+    payload: {
+      url,
+      method,
+      data,
+      onSuccess,
+      onFailure,
+    },
+  };
+}
+
+export { fetchAndSetPost };

@@ -8,10 +8,11 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './redux/rootReducer';
 import Routes from './Routes';
+import apiMiddleware from './middleware/api';
 
 const store = createStore(
   rootReducer,
-  composeWithDevTools(applyMiddleware(thunk))
+  composeWithDevTools(applyMiddleware(apiMiddleware, thunk))
 );
 
 const browserHistory = createBrowserHistory();
