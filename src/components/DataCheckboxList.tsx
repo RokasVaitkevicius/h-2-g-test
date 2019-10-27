@@ -9,6 +9,7 @@ import {
   List,
   Paper,
 } from '@material-ui/core';
+import { DataCheckboxListProps } from '../types';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const DataCheckboxList = props => {
+const DataCheckboxList: React.FC<DataCheckboxListProps> = props => {
   const classes = useStyles();
   const { data, onClick, header } = props;
 
