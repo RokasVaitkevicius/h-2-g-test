@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { setApiStatus } from '../redux/apiStatus/actions';
+import { setApiStatus } from '../redux/apiData/actions';
 import { APIStatus, ActionTypes } from '../types';
 
 const apiMiddleware = ({ dispatch }) => next => action => {

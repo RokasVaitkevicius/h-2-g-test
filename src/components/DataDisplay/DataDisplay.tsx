@@ -46,6 +46,7 @@ const DataDisplay: React.FC<DataComponentProps> = props => {
       />
       <Grid container direction="row" justify="flex-start" alignItems="center">
         <Button
+          color="primary"
           disabled={!apiEndpoint}
           variant="contained"
           className={classes.button}

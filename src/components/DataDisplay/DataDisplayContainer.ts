@@ -4,8 +4,8 @@ import {
   selectApiStatus,
   selectApiEndpoint,
   selectApiData,
-} from '../../redux/apiStatus/selectors';
-import { changeApi, fetchAndSetApiData } from '../../redux/apiStatus/thunks';
+} from '../../redux/apiData/selectors';
+import { changeApi, fetchAndSetApiData } from '../../redux/apiData/thunks';
 
 const apis = [
   {
