@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Button, Grid, TextField } from '@material-ui/core';
 import RadioBox from '../RadioBox';
 import { makeStyles } from '@material-ui/core/styles';
 import { DataComponentProps } from '../../types';
@@ -27,24 +27,34 @@ const DataDisplay: React.FC<DataComponentProps> = props => {
 
   return (
     <div>
-      <Typography variant="h1">Data</Typography>
-      <Button
-        disabled={!apiEndpoint}
-        variant="contained"
-        className={classes.button}
-        onClick={() => onButtonClick(apiEndpoint)}
-      >
-        Pull Data
-      </Button>
-      <Typography variant="h2">{apiStatus}</Typography>
+      <Typography variant="h2">Data Display</Typography>
       <RadioBox
         data={apis}
         label="Choose an API"
         onChange={e => onChangeApi(e.target.value)}
         value={apiEndpoint}
       />
-
-      {data && <Typography variant="h1">{JSON.stringify(data)}</Typography>}
+      <TextField
+        id="standard-multiline-flexible"
+        label="Data"
+        multiline
+        rows="3"
+        value={data ? JSON.stringify(data) : ''}
+        margin="normal"
+        disabled
+        fullWidth
+      />
+      <Grid container direction="row" justify="flex-start" alignItems="center">
+        <Button
+          disabled={!apiEndpoint}
+          variant="contained"
+          className={classes.button}
+          onClick={() => onButtonClick(apiEndpoint)}
+        >
+          Pull Data
+        </Button>
+        <Typography variant="h3">{apiStatus}</Typography>
+      </Grid>
     </div>
   );
 };
