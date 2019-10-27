@@ -1,7 +1,14 @@
-export interface DataComponentProps {
-  data: string;
-  onButtonClick: () => void;
+export interface DataDisplayProps {
+  apiData: Array<GenericItem>;
+  onButtonClick: (url: string) => void;
   apiStatus: APIStatus;
+  apis: Array<RadioData>;
+  onChangeApi: (url: string) => void;
+  apiEndpoint: string;
+  apiDataHeader: string;
+  onApiDataClick: (id: number) => void;
+  buttonText: string;
+  radioLabel: string;
 }
 
 export interface IndicatorProps {
@@ -9,9 +16,20 @@ export interface IndicatorProps {
 }
 
 export interface DataCheckboxListProps {
-  data: Array<any>;
-  onClick: (id: string) => void;
+  data: Array<GenericItem>;
+  onClick: (id: number) => void;
   header: string;
+}
+
+export interface Action {
+  type: string;
+  payload: object;
+}
+
+export interface GenericItem {
+  id: number;
+  isChecked: boolean;
+  [x: string]: any;
 }
 
 export interface DataButtonProps {
@@ -20,15 +38,25 @@ export interface DataButtonProps {
   buttonText: string;
 }
 
-export interface ApiChoice {
-  label: string;
+export interface RadioBoxProps {
+  data: Array<RadioData>;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  label?: string;
   value: string;
 }
 
-export interface RadioBoxProps {
-  data: Array<ApiChoice>;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  label?: string;
+export interface ExternalApiState {
+  status: APIStatus;
+  endpoint: string;
+  data: Array<GenericItem>;
+}
+
+export interface AppState {
+  externalApi: ExternalApiState;
+}
+
+export interface RadioData {
+  label: string;
   value: string;
 }
 

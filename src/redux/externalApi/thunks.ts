@@ -1,8 +1,9 @@
+import { Dispatch } from 'redux';
 import { setApiEndpoint, setApiStatus, setApiData } from './actions';
 import { APIStatus } from '../../types';
 import { apiAction } from '../utils';
 
-const changeApi = endpoint => dispatch => {
+const changeApi = (endpoint: string) => (dispatch: Dispatch) => {
   dispatch(setApiEndpoint(endpoint));
   dispatch(setApiStatus(APIStatus.IDLE));
   dispatch(setApiData([]));

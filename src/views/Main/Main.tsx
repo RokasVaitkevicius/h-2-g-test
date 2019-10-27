@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Typography, Divider } from '@material-ui/core';
-import DataDisplay from '../../components/DataDisplay/DataDisplayContainer';
+import { Typography } from '@material-ui/core';
+import DataDisplay from '../../components/ExternalApiDataDisplay/ExternalApiDataDisplayContainer';
 
 const Main: React.FC = () => (
   <div>

@@ -1,3 +1,4 @@
+import { combineReducers } from 'redux';
 import {
   SET_API_STATUS,
   SET_API_ENDPOINT,
@@ -5,18 +6,22 @@ import {
   SET_API_DATA_IS_CHECKED,
 } from './constants';
 import { set } from '../utils';
-import { APIStatus } from '../../types';
-import { combineReducers } from 'redux';
+import { APIStatus, Action } from '../../types';
 
 const defaultApiStatusState = APIStatus.IDLE;
 const defaultApiEndpointState = '';
-const defaultApiDataState = [];
+const defaultApiDataState: Array<object> = [];
 
-const updateApiDataCheckedInArray = (array, { payload }) => {
+const updateApiDataCheckedInArray = (
+  array: Array<object>,
+  { payload }: Action
+) => {
   return array.map(item => {
+    // @ts-ignore
     if (item.id === payload.id) {
       return {
         ...item,
+        // @ts-ignore
         isChecked: !item.isChecked,
       };
     }
@@ -25,7 +30,7 @@ const updateApiDataCheckedInArray = (array, { payload }) => {
   });
 };
 
-const apiStatus = (state = defaultApiStatusState, action) => {
+const status = (state = defaultApiStatusState, action: Action) => {
   switch (action.type) {
     case SET_API_STATUS:
       return set(state, action);
@@ -34,7 +39,7 @@ const apiStatus = (state = defaultApiStatusState, action) => {
   }
 };
 
-const apiEndpoint = (state = defaultApiEndpointState, action) => {
+const endpoint = (state = defaultApiEndpointState, action: Action) => {
   switch (action.type) {
     case SET_API_ENDPOINT:
       return set(state, action);
@@ -43,7 +48,7 @@ const apiEndpoint = (state = defaultApiEndpointState, action) => {
   }
 };
 
-const apiData = (state = defaultApiDataState, action) => {
+const data = (state = defaultApiDataState, action: Action) => {
   switch (action.type) {
     case SET_API_DATA:
       return set(state, action);
@@ -55,7 +60,7 @@ const apiData = (state = defaultApiDataState, action) => {
 };
 
 export default combineReducers({
-  apiStatus,
-  apiEndpoint,
-  apiData,
+  status,
+  endpoint,
+  data,
 });

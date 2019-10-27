@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
-import api from './apiData/reducers';
+import externalApi from './externalApi/reducers';
 
-export default combineReducers({ api });
+export default combineReducers({ externalApi });

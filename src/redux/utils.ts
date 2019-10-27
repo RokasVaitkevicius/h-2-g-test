@@ -1,32 +1,12 @@
 import { ActionTypes } from '../types';
 
-const updateObjectInArray = (array, { payload }) => {
-  return array.map(item => {
-    if (item.id === payload.id) {
-      return {
-        ...item,
-        ...payload,
-      };
-    }
-
-    return item;
-  });
-};
-
-const update = (state, { payload }) => ({ ...state, ...payload });
-
-const set = (state, { payload }) => payload;
-
-const updateValueByKey = (state, key, { payload }) => ({
-  ...state,
-  [key]: payload,
-});
+const set = (state: any, { payload }: any) => payload;
 
 function apiAction({
   url = '',
   method = 'GET',
   data = null,
-  onSuccess = () => {},
+  onSuccess = (data: Array<object>) => {},
   onFailure = () => {},
 }) {
   return {
@@ -41,4 +21,4 @@ function apiAction({
   };
 }
 
-export { updateObjectInArray, update, set, updateValueByKey, apiAction };
+export { set, apiAction };

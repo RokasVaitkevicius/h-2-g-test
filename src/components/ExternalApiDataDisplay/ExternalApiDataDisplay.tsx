@@ -1,41 +1,31 @@
 import React from 'react';
 import { Typography, Grid } from '@material-ui/core';
 import RadioBox from '../RadioBox';
-import { makeStyles } from '@material-ui/core/styles';
-import { DataComponentProps } from '../../types';
+import { DataDisplayProps } from '../../types';
 import DataList from '../DataCheckboxList';
 import Inidcator from '../Indicator';
 import DataButton from '../DataButton';
 
-const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1),
-  },
-  input: {
-    display: 'none',
-  },
-}));
-
-const DataDisplay: React.FC<DataComponentProps> = props => {
+const ExternalApiDataDisplay: React.FC<DataDisplayProps> = props => {
   const {
-    data,
+    apiData,
     onButtonClick,
     apiStatus,
     apis,
     onChangeApi,
     apiEndpoint,
-    listHeader,
+    apiDataHeader,
     onApiDataClick,
+    buttonText,
+    radioLabel,
   } = props;
-
-  const classes = useStyles();
 
   return (
     <div>
-      <Typography variant="h2">Data Display</Typography>
+      <Typography variant="h2">External Api Data Display</Typography>
       <RadioBox
         data={apis}
-        label="Choose an API"
+        label={radioLabel}
         onChange={e => onChangeApi(e.target.value)}
         value={apiEndpoint}
       />
@@ -43,13 +33,17 @@ const DataDisplay: React.FC<DataComponentProps> = props => {
         <DataButton
           disabled={!apiEndpoint}
           onClick={() => onButtonClick(apiEndpoint)}
-          buttonText="Pull data"
+          buttonText={buttonText}
         />
         <Inidcator apiStatus={apiStatus} />
       </Grid>
-      <DataList header={listHeader} data={data} onClick={onApiDataClick} />
+      <DataList
+        header={apiDataHeader}
+        data={apiData}
+        onClick={onApiDataClick}
+      />
     </div>
   );
 };
 
-export default DataDisplay;
+export default ExternalApiDataDisplay;
