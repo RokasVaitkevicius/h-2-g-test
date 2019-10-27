@@ -2,6 +2,8 @@ import { ActionTypes } from '../types';
 
 const set = (state: any, { payload }: any) => payload;
 
+const addItemToArray = (state: any, { payload }: any) => [...state, payload];
+
 function apiAction({
   url = '',
   method = 'GET',
@@ -21,4 +23,4 @@ function apiAction({
   };
 }
 
-export { set, apiAction };
+export { set, apiAction, addItemToArray };

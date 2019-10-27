@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { AppState } from 'types';
-import ExternalApiDataDisplay from './ExternalApiDataDisplay';
+import { AppState, RenderableComponent } from 'types';
+import ExternalApiDataDisplay from './ExternalApiComponentPickerDisplay';
 import {
   selectApiStatus,
   selectApiEndpoint,
@@ -10,6 +10,14 @@ import {
 } from '../../redux/externalApi/selectors';
 import { changeApi, fetchAndSetApiData } from '../../redux/externalApi/thunks';
 import { setApiDataIsChecked } from '../../redux/externalApi/actions';
+import {
+  selectSelectedComponent,
+  selectRenderableComponents,
+} from '../../redux/renderComponents/selectors';
+import {
+  setSelectedComponent,
+  addRenderableComponent,
+} from '../../redux/renderComponents/actions';
 
 const apis = [
   {
@@ -31,12 +39,18 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   // @ts-ignore
   onChangeApi: (url: string) => dispatch(changeApi(url)),
   onApiDataClick: (id: number) => dispatch(setApiDataIsChecked(id)),
+  onSelectedComponentChange: (component: RenderableComponent) =>
+    dispatch(setSelectedComponent(component)),
+  addRenderableComponent: (component: RenderableComponent) =>
+    dispatch(addRenderableComponent(component)),
 });
 
 const mapStateToProps = (state: AppState) => ({
   apiData: selectApiData(state),
   apiStatus: selectApiStatus(state),
   apiEndpoint: selectApiEndpoint(state),
+  selectedComponent: selectSelectedComponent(state),
+  renderableComponents: selectRenderableComponents(state),
   apiDataHeader: `Apis count checked: ${selectCheckedApiDataCount(state)}`,
   buttonText: 'Pull Data',
   radioLabel: 'Pick an API to call',

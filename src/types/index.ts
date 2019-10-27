@@ -1,4 +1,4 @@
-export interface DataDisplayProps {
+export interface ExternalApiCompPickerDisplayProps {
   apiData: Array<GenericItem>;
   onButtonClick: (url: string) => void;
   apiStatus: APIStatus;
@@ -9,10 +9,30 @@ export interface DataDisplayProps {
   onApiDataClick: (id: number) => void;
   buttonText: string;
   radioLabel: string;
+  selectedComponent: RenderableComponent;
+  renderableComponents: Array<RenderableComponent>;
+  onSelectedComponentChange: (value: RenderableComponent | undefined) => void;
+  addRenderableComponent: (component: RenderableComponent) => void;
+}
+
+export interface RenderableComponent {
+  name: string;
+  component: (props: ExternalApiCompPickerDisplayProps) => JSX.Element;
 }
 
 export interface IndicatorProps {
   apiStatus: APIStatus;
+}
+
+export interface SelectBoxProps {
+  options: Array<SelectBoxItem>;
+  handleChange: (event: any) => void;
+  value: Array<string>;
+}
+
+export interface SelectBoxItem {
+  name: string;
+  [key: string]: any;
 }
 
 export interface DataCheckboxListProps {
@@ -29,7 +49,7 @@ export interface Action {
 export interface GenericItem {
   id: number;
   isChecked: boolean;
-  [x: string]: any;
+  [key: string]: any;
 }
 
 export interface DataButtonProps {
@@ -51,8 +71,14 @@ export interface ExternalApiState {
   data: Array<GenericItem>;
 }
 
+export interface RenderComponentsState {
+  selected: RenderableComponent;
+  renderable: Array<RenderableComponent>;
+}
+
 export interface AppState {
   externalApi: ExternalApiState;
+  renderComponents: RenderComponentsState;
 }
 
 export interface RadioData {
