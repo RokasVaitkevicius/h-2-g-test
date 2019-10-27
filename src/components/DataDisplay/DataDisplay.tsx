@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography, Button } from '@material-ui/core';
+import RadioBox from '../RadioBox';
 import { makeStyles } from '@material-ui/core/styles';
 import { DataComponentProps } from '../../types';
 
@@ -13,21 +14,37 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const DataDisplay: React.FC<DataComponentProps> = props => {
-  const { data, onButtonClick, header, apiStatus } = props;
+  const {
+    data,
+    onButtonClick,
+    apiStatus,
+    apis,
+    onChangeApi,
+    apiEndpoint,
+  } = props;
+
   const classes = useStyles();
 
   return (
     <div>
-      <Typography variant="h1">{header}</Typography>
+      <Typography variant="h1">Data</Typography>
       <Button
+        disabled={!apiEndpoint}
         variant="contained"
         className={classes.button}
-        onClick={onButtonClick}
+        onClick={() => onButtonClick(apiEndpoint)}
       >
-        Default
+        Pull Data
       </Button>
       <Typography variant="h2">{apiStatus}</Typography>
-      {data && <Typography variant="h1">{data}</Typography>}
+      <RadioBox
+        data={apis}
+        label="Choose an API"
+        onChange={e => onChangeApi(e.target.value)}
+        value={apiEndpoint}
+      />
+
+      {data && <Typography variant="h1">{JSON.stringify(data)}</Typography>}
     </div>
   );
 };

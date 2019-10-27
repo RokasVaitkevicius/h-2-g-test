@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { Typography, Button } from '@material-ui/core';
-import PostsApi from '../../components/DataDisplay/PostsDataContainer';
+import PostsApi from '../../components/DataDisplay/DataDisplayContainer';
 
 const Main: React.FC = () => (
   <div>

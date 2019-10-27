@@ -1,3 +1,5 @@
+import { ActionTypes } from '../types';
+
 const updateObjectInArray = (array, { payload }) => {
   return array.map(item => {
     if (item.id === payload.id) {
@@ -20,4 +22,23 @@ const updateValueByKey = (state, key, { payload }) => ({
   [key]: payload,
 });
 
-export { updateObjectInArray, update, set, updateValueByKey };
+function apiAction({
+  url = '',
+  method = 'GET',
+  data = null,
+  onSuccess = () => {},
+  onFailure = () => {},
+}) {
+  return {
+    type: ActionTypes.API,
+    payload: {
+      url,
+      method,
+      data,
+      onSuccess,
+      onFailure,
+    },
+  };
+}
+
+export { updateObjectInArray, update, set, updateValueByKey, apiAction };

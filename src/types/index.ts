@@ -1,15 +1,19 @@
-export interface Post {
-  userId: number;
-  id: number;
-  title: string;
-  body: string;
-}
-
 export interface DataComponentProps {
   data: string;
   onButtonClick: () => void;
-  header: string;
   apiStatus: APIStatus;
+}
+
+export interface ApiChoice {
+  label: string;
+  value: string;
+}
+
+export interface RadioBoxProps {
+  data: Array<ApiChoice>;
+  onChange: () => void;
+  label?: string;
+  value: string;
 }
 
 export enum APIStatus {
