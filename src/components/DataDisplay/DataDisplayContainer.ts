@@ -4,8 +4,10 @@ import {
   selectApiStatus,
   selectApiEndpoint,
   selectApiData,
+  selectCheckedApiDataCount,
 } from '../../redux/apiData/selectors';
 import { changeApi, fetchAndSetApiData } from '../../redux/apiData/thunks';
+import { setApiDataIsChecked } from '../../redux/apiData/actions';
 
 const apis = [
   {
@@ -25,12 +27,14 @@ const apis = [
 const mapDispatchToProps = dispatch => ({
   onButtonClick: url => dispatch(fetchAndSetApiData(url)),
   onChangeApi: url => dispatch(changeApi(url)),
+  onApiDataClick: id => dispatch(setApiDataIsChecked(id)),
 });
 
 const mapStateToProps = state => ({
   data: selectApiData(state),
   apiStatus: selectApiStatus(state),
   apiEndpoint: selectApiEndpoint(state),
+  listHeader: `Apis count checked: ${selectCheckedApiDataCount(state)}`,
   apis,
 });
 

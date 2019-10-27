@@ -5,15 +5,14 @@ import { apiAction } from '../utils';
 const changeApi = endpoint => dispatch => {
   dispatch(setApiEndpoint(endpoint));
   dispatch(setApiStatus(APIStatus.IDLE));
-  dispatch(setApiData(null));
+  dispatch(setApiData([]));
 };
 
 const fetchAndSetApiData = (url: string) => {
   return apiAction({
     url,
     onSuccess: (data: Array<object>) => {
-      const randomObj = data[Math.floor(Math.random() * data.length)];
-      return setApiData(randomObj);
+      return setApiData(data);
     },
     onFailure: () => console.log('Error occured loading posts'),
   });

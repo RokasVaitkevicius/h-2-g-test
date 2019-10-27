@@ -1,8 +1,9 @@
 import React from 'react';
-import { Typography, Button, Grid, TextField } from '@material-ui/core';
+import { Typography, Button, Grid } from '@material-ui/core';
 import RadioBox from '../RadioBox';
 import { makeStyles } from '@material-ui/core/styles';
 import { DataComponentProps } from '../../types';
+import DataList from '../DataCheckboxList';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -21,6 +22,8 @@ const DataDisplay: React.FC<DataComponentProps> = props => {
     apis,
     onChangeApi,
     apiEndpoint,
+    listHeader,
+    onApiDataClick,
   } = props;
 
   const classes = useStyles();
@@ -34,16 +37,6 @@ const DataDisplay: React.FC<DataComponentProps> = props => {
         onChange={e => onChangeApi(e.target.value)}
         value={apiEndpoint}
       />
-      <TextField
-        id="standard-multiline-flexible"
-        label="Data"
-        multiline
-        rows="3"
-        value={data ? JSON.stringify(data) : ''}
-        margin="normal"
-        disabled
-        fullWidth
-      />
       <Grid container direction="row" justify="flex-start" alignItems="center">
         <Button
           color="primary"
@@ -56,6 +49,9 @@ const DataDisplay: React.FC<DataComponentProps> = props => {
         </Button>
         <Typography variant="h3">{apiStatus}</Typography>
       </Grid>
+      {data && data.length > 0 && (
+        <DataList header={listHeader} data={data} onClick={onApiDataClick} />
+      )}
     </div>
   );
 };
