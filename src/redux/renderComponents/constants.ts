@@ -1,2 +1,2 @@
-export const SET_SELECTED_COMPONENT = '[components] set selected component';
-export const ADD_RENDERABLE_COMPONENT = '[components] add renderable component';
+export const SET_SELECTED_COMPONENT = '[components] set selected';
+export const ADD_RENDERABLE_COMPONENT = '[components] add renderable';

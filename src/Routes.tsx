@@ -1,8 +1,5 @@
 import React from 'react';
 import { Switch, Redirect, Route } from 'react-router-dom';
-
-// import { RouteWithLayout } from './components';
-
 import { MainScreen } from './views';
 
 const Routes: React.FC = () => (

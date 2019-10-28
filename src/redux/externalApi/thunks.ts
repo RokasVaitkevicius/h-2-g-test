@@ -1,7 +1,8 @@
 import { Dispatch } from 'redux';
 import { setApiEndpoint, setApiStatus, setApiData } from './actions';
-import { APIStatus } from '../../types';
+import { APIStatus, AppState } from '../../types';
 import { apiAction } from '../utils';
+import { selectApiEndpoint } from './selectors';
 
 const changeApi = (endpoint: string) => (dispatch: Dispatch) => {
   dispatch(setApiEndpoint(endpoint));
@@ -9,14 +10,18 @@ const changeApi = (endpoint: string) => (dispatch: Dispatch) => {
   dispatch(setApiData([]));
 };
 
-const fetchAndSetApiData = (url: string) => {
-  return apiAction({
-    url,
-    onSuccess: (data: Array<object>) => {
-      return setApiData(data);
-    },
-    onFailure: () => console.log('Error occured loading posts'),
-  });
+const fetchAndSetApiData = () => (
+  dispatch: Dispatch,
+  getState: () => AppState
+) => {
+  const apiEndpoint = selectApiEndpoint(getState());
+  dispatch(
+    apiAction({
+      url: apiEndpoint,
+      onSuccess: (data: Array<object>) => setApiData(data),
+      onFailure: () => console.log('Error occured loading posts'),
+    })
+  );
 };
 
 export { changeApi, fetchAndSetApiData };

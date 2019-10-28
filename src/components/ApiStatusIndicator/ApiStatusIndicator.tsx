@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
-import { IndicatorProps } from '../types';
+import { IndicatorProps as Props } from './types';
 
 const useStyles = makeStyles(() =>
   createStyles({
@@ -20,9 +20,8 @@ const useStyles = makeStyles(() =>
   })
 );
 
-const Indicator: React.FC<IndicatorProps> = props => {
+const ApiStatusIndicator: React.FC<Props> = ({ apiStatus }) => {
   const classes = useStyles();
-  const { apiStatus } = props;
   return (
     <Typography variant="h3" className={classes[apiStatus]}>
       {apiStatus}
@@ -30,4 +29,4 @@ const Indicator: React.FC<IndicatorProps> = props => {
   );
 };
 
-export default Indicator;
+export default ApiStatusIndicator;

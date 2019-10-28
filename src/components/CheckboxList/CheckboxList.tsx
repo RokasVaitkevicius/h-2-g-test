@@ -9,7 +9,7 @@ import {
   List,
   Paper,
 } from '@material-ui/core';
-import { DataCheckboxListProps } from '../types';
+import { CheckboxListProps as Props } from './types';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -24,28 +24,20 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const DataCheckboxList: React.FC<DataCheckboxListProps> = props => {
+const CheckboxList: React.FC<Props> = ({ data, onClick, header }) => {
   const classes = useStyles();
-  const { data, onClick, header } = props;
 
   return (
-    <div>
+    <React.Fragment>
       <Typography variant="h2">{header}</Typography>
       <Paper className={classes.paper}>
         <List className={classes.root}>
           {data &&
-            data.length > 0 &&
             data.map(d => {
               const labelId = `checkbox-list-label-${d.id}`;
 
               return (
-                <ListItem
-                  key={d.id}
-                  role={undefined}
-                  dense
-                  button
-                  onClick={() => onClick(d.id)}
-                >
+                <ListItem key={d.id} dense button onClick={() => onClick(d.id)}>
                   <ListItemIcon>
                     <Checkbox
                       edge="start"
@@ -61,8 +53,8 @@ const DataCheckboxList: React.FC<DataCheckboxListProps> = props => {
             })}
         </List>
       </Paper>
-    </div>
+    </React.Fragment>
   );
 };
 
-export default DataCheckboxList;
+export default CheckboxList;

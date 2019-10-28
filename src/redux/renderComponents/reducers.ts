@@ -3,7 +3,10 @@ import { SET_SELECTED_COMPONENT, ADD_RENDERABLE_COMPONENT } from './constants';
 import { set, addItemToArray } from '../utils';
 import { Action, RenderableComponent } from '../../types';
 
-const defaultSelectedComponentState = { name: '' };
+const defaultSelectedComponentState: RenderableComponent = {
+  name: '',
+  component: undefined,
+};
 const defaultRenderableComponentsState: Array<RenderableComponent> = [];
 
 const selected = (state = defaultSelectedComponentState, action: Action) => {
