@@ -5,8 +5,7 @@ import { MainScreen } from './views';
 const Routes: React.FC = () => (
   <Switch>
     <Redirect exact from="/" to="/main" />
-    <Route component={MainScreen} exact path="/main" />
-    <Redirect to="/not-found" />
+    <Route component={MainScreen} path="/main" />
   </Switch>
 );
 

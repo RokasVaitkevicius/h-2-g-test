@@ -5,7 +5,6 @@ import { AppState } from 'types';
 import { selectSelectedComponent } from '../../redux/renderComponents/selectors';
 import { setSelectedComponent } from '../../redux/renderComponents/actions';
 import SelectBox from '../../components/SelectBox';
-
 import Button from '../ExternalApi/Button';
 import CheckboxList from '../ExternalApi/CheckboxList';
 import ApiStatusIndicator from '../ExternalApi/ApiStatusIndicator';

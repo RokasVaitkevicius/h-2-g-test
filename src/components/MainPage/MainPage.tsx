@@ -13,10 +13,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-const ExternalApiComponentPickerDisplay: React.FC<Props> = ({
-  label,
-  renderableComponents,
-}) => {
+const MainPage: React.FC<Props> = ({ label, renderableComponents }) => {
   const classes = useStyles();
 
   return (
@@ -50,4 +47,4 @@ const ExternalApiComponentPickerDisplay: React.FC<Props> = ({
   );
 };
 
-export default ExternalApiComponentPickerDisplay;
+export default MainPage;

@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 const mapStateToProps = (state: AppState) => ({
   buttonText: 'Append Component',
-  disabled: !selectSelectedComponent(state),
+  disabled: !selectSelectedComponent(state).component,
 });
 
 export default connect(
